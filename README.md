@@ -1,4 +1,4 @@
-# Social Network - 💬 Vaysik 💬 👋
+# Social Network - 💬 Vi 💬 👋
 Social Network
 ## Functional:
 * Register, Authorization
