@@ -16,7 +16,11 @@ oauth2_scheme = OAuth2PasswordBearer(tokenUrl="auth/token")
 
 @router.post("/token", response_model=Token)
 async def login_for_access_token(form_data: OAuth2PasswordRequestForm = Depends()):
+    print("hello world")
+    print("user: ", form_data.username)
+    print("password: ", form_data.password)
     user = await authenticate_user(form_data.username, form_data.password)
+    print("user: ", user)
     if not user:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
@@ -27,6 +31,7 @@ async def login_for_access_token(form_data: OAuth2PasswordRequestForm = Depends(
     access_token = await create_access_token(
         data={"sub": user["username"]}, expires_delta=access_token_expires
     )
+    print("access_token: ", access_token)
     return {"access_token": access_token, "token_type": "bearer"}
 
 
